@@ -1,0 +1,37 @@
+{
+    "name": "deschutesdesigngroupllc/forumify-social-login-plugin",
+    "type": "forumify-plugin",
+    "keywords": ["forumify", "social", "login"],
+    "license": "OSL-3.0",
+    "require": {
+        "php": "^8.3",
+        "forumify/forumify-platform": "@dev"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/Users/jonerickson/PhpstormProjects/forumify-platform"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "DeschutesDesignGroupLLC\\ForumifySocialLoginPlugin\\": "src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/runtime": false,
+            "symfony/flex": false
+        }
+    },
+    "require-dev": {
+        "laravel/pint": "^1.17"
+    },
+    "scripts": {
+        "lint": "./vendor/bin/pint src"
+    },
+    "extra": {
+        "forumify-plugin-class": "DeschutesDesignGroupLLC\\ForumifySocialLoginPlugin\\SocialLoginPlugin"
+    }
+}

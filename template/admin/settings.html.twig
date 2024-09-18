@@ -1,0 +1,11 @@
+{% extends '@Forumify/admin/base.html.twig' %}
+{% block body %}
+    {% embed '@Forumify/admin/components/simple_form.html.twig' with {
+        title: 'sociallogin.settings.title'|trans,
+        cancelPath: path('forumify_admin_plugin_list')
+    } %}
+        {% block form %}
+            {{ parent() }}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

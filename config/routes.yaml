@@ -1,0 +1,11 @@
+admin:
+  resource: ../src/Admin/Controller
+  type: attribute
+  prefix: admin/sociallogin/
+  name_prefix: sociallogin_admin_
+
+login:
+  resource: ../src/Login/Controller
+  type: attribute
+  prefix: social/
+  name_prefix: sociallogin_

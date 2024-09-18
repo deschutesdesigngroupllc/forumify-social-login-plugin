@@ -3,5 +3,5 @@ services:
     autowire: true
     autoconfigure: true
 
-  DeschutesDesignGroupLLC\ForumifySocialLoginPlugin\:
+  DeschutesDesignGroupLLC\SocialLoginPlugin\:
     resource: '../src/'

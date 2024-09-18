@@ -1,6 +1,6 @@
 <?php
 
-namespace DeschutesDesignGroupLLC\ForumifySocialLoginPlugin\Login\Entity;
+namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Login\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Forumify\Core\Entity\User;

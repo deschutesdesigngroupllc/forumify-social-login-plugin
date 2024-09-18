@@ -1,0 +1,28 @@
+{% extends '@Forumify/admin/base.html.twig' %}
+{% block title_page %}{{ 'admin.configuration.title'|trans }}{% endblock %}
+{% block body %}
+    <h1>{{ 'sociallogin.settings.title'|trans }}</h1>
+    <div class="box">
+        {{ form_start(form) }}
+        {% embed '@Forumify/components/tabs.html.twig' %}
+            {% block tabs %}
+                <button type="button" class="btn-link" data-tab-id="discord">{{ 'sociallogin.clients.discord'|trans }}</button>
+                <button type="button" class="btn-link" data-tab-id="google">{{ 'sociallogin.clients.google'|trans }}</button>
+            {% endblock %}
+            {% block tabpanels %}
+                <div id="discord">
+                    {{ form_row(form.sociallogin__discord__client_id) }}
+                    {{ form_row(form.sociallogin__discord__client_secret) }}
+                </div>
+                <div id="google">
+                    {{ form_row(form.sociallogin__google__client_id) }}
+                    {{ form_row(form.sociallogin__google__client_secret) }}
+                </div>
+            {% endblock %}
+        {% endembed %}
+        <div class="flex justify-center items-center gap-2">
+            <button type="submit" class="btn-primary">{{ 'save'|trans }}</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

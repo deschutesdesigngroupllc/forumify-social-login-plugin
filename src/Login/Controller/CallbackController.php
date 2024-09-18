@@ -1,19 +1,18 @@
 <?php
 
-namespace DeschutesDesignGroupLLC\ForumifySocialLoginPlugin\Login\Controller;
+namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Login\Controller;
 
-use DeschutesDesignGroupLLC\ForumifySocialLoginPlugin\Login\Security\Http\Authenticator\SocialLoginAuthenticator;
-use Forumify\Core\Security\Http\Authenticator\ForumifyAuthenticator;
-use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[IsGranted('ROLE_USER')]
-class CallbackController
+class CallbackController extends AbstractController
 {
-    #[Route('/callback', 'callback')]
-    public function __invoke(Request $request) {
-        dd($request);
+    #[Route('/login/callback/{provider}', 'callback')]
+    public function __invoke(): RedirectResponse
+    {
+        return $this->redirectToRoute('forumify_core_index');
     }
 }

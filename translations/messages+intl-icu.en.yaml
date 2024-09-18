@@ -1,3 +1,6 @@
 sociallogin:
   settings:
     title: Social Login Configuration
+  clients:
+    discord: Discord
+    google: Google

@@ -1,15 +1,23 @@
 <?php
 
-namespace DeschutesDesignGroupLLC\ForumifySocialLoginPlugin\Login\Controller;
+namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Login\Controller;
 
-use DeschutesDesignGroupLLC\ForumifySocialLoginPlugin\Login\Service\SocialLoginService;
+use DeschutesDesignGroupLLC\SocialLoginPlugin\Login\Service\SocialLoginService;
+use Exception;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Attribute\Route;
 
-class RedirectController
+class RedirectController extends AbstractController
 {
-    #[Route('/sociallogin/redirect')]
-    public function __invoke(SocialLoginService $service)
+    /**
+     * @throws Exception
+     */
+    #[Route('/login/redirect/{provider}', 'redirect')]
+    public function __invoke(SocialLoginService $service, string $provider): RedirectResponse
     {
-        dd('test');
+        return $service
+            ->getClient($provider)
+            ->redirect();
     }
 }

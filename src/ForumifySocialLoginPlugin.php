@@ -1,11 +1,11 @@
 <?php
 
-namespace DeschutesDesignGroupLLC\ForumifySocialLoginPlugin;
+namespace DeschutesDesignGroupLLC\SocialLoginPlugin;
 
 use Forumify\Plugin\AbstractForumifyPlugin;
 use Forumify\Plugin\PluginMetadata;
 
-class SocialLoginPlugin extends AbstractForumifyPlugin
+class ForumifySocialLoginPlugin extends AbstractForumifyPlugin
 {
     public function getPluginMetadata(): PluginMetadata
     {

@@ -5,7 +5,10 @@
     "license": "OSL-3.0",
     "require": {
         "php": "^8.3",
-        "forumify/forumify-platform": "@dev"
+        "forumify/forumify-platform": "@dev",
+        "league/oauth2-google": "^4.0",
+        "wohali/oauth2-discord-new": "^1.2",
+        "knpuniversity/oauth2-client-bundle": "^2.18"
     },
     "repositories": [
         {
@@ -13,10 +16,10 @@
             "url": "/Users/jonerickson/PhpstormProjects/forumify-platform"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "DeschutesDesignGroupLLC\\ForumifySocialLoginPlugin\\": "src/"
+            "DeschutesDesignGroupLLC\\SocialLoginPlugin\\": "src/"
         }
     },
     "config": {
@@ -32,6 +35,6 @@
         "lint": "./vendor/bin/pint src"
     },
     "extra": {
-        "forumify-plugin-class": "DeschutesDesignGroupLLC\\ForumifySocialLoginPlugin\\SocialLoginPlugin"
+        "forumify-plugin-class": "DeschutesDesignGroupLLC\\SocialLoginPlugin\\ForumifySocialLoginPlugin"
     }
 }

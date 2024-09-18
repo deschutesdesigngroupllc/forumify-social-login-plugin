@@ -1,8 +1,8 @@
 <?php
 
-namespace DeschutesDesignGroupLLC\ForumifySocialLoginPlugin\Admin\Controller;
+namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Admin\Controller;
 
-use DeschutesDesignGroupLLC\ForumifySocialLoginPlugin\Form\SettingsType;
+use DeschutesDesignGroupLLC\SocialLoginPlugin\Admin\Form\SettingsType;
 use Forumify\Core\Repository\SettingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -28,7 +28,7 @@ class SettingsController extends AbstractController
             return $this->redirectToRoute('sociallogin_admin_settings');
         }
 
-        return $this->render('@DeschutesDesignGroupLLCSocialLoginPlugin/admin/settings.html.twig', [
+        return $this->render('@ForumifySocialLoginPlugin/admin/settings.html.twig', [
             'form' => $form->createView(),
         ]);
     }

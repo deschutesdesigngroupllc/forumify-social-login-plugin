@@ -1,6 +1,6 @@
 <?php
 
-namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Login\Service;
+namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Service;
 
 use Exception;
 use Forumify\Core\Repository\SettingRepository;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Wohali\OAuth2\Client\Provider\DiscordResourceOwner;
 
-readonly class SocialLoginService
+readonly class LoginService
 {
     public function __construct(
         private SettingRepository $settingRepository,

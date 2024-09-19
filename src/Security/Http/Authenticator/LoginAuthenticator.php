@@ -1,8 +1,10 @@
 <?php
 
-namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Login\Security\Http\Authenticator;
+namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Security\Http\Authenticator;
 
-use DeschutesDesignGroupLLC\SocialLoginPlugin\Login\Service\SocialLoginService;
+use DeschutesDesignGroupLLC\SocialLoginPlugin\Security\Authentication\LoginFailureHandler;
+use DeschutesDesignGroupLLC\SocialLoginPlugin\Security\Authentication\LoginSuccessHandler;
+use DeschutesDesignGroupLLC\SocialLoginPlugin\Service\LoginService;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Forumify\Core\Repository\UserRepository;
@@ -17,12 +19,14 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 
 #[AutoconfigureTag('forumify.authenticator')]
-class SocialLoginAuthenticator extends OAuth2Authenticator
+class LoginAuthenticator extends OAuth2Authenticator
 {
     public function __construct(
-        protected SocialLoginService $service,
+        protected LoginService $service,
         protected UserRepository $userRepository,
-        protected EntityManagerInterface $entityManager
+        protected EntityManagerInterface $entityManager,
+        protected LoginSuccessHandler $successHandler,
+        protected LoginFailureHandler $failureHandler,
     ) {
         //
     }
@@ -77,11 +81,11 @@ class SocialLoginAuthenticator extends OAuth2Authenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        // TODO: Implement onAuthenticationSuccess() method.
+        return $this->successHandler->onAuthenticationSuccess($request, $token);
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
-        // TODO: Implement onAuthenticationFailure() method.
+        return $this->failureHandler->onAuthenticationFailure($request, $exception);
     }
 }

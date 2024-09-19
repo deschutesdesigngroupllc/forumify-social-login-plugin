@@ -1,6 +1,6 @@
 <?php
 
-namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Login\Entity;
+namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Forumify\Core\Entity\User;
@@ -8,7 +8,7 @@ use Forumify\Core\Repository\UserRepository;
 
 #[ORM\Entity]
 #[ORM\Table('sociallogin_user')]
-class SocialUser
+class UserSocial
 {
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(onDelete: 'CASCADE')]

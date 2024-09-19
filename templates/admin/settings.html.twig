@@ -11,10 +11,12 @@
             {% endblock %}
             {% block tabpanels %}
                 <div id="discord">
+                    <div class="pb-2 text-sm">Information about setting up OAuth 2 with Discord can be found <a href='https://discord.com/developers/docs/topics/oauth2' target="_blank">here</a>.</div>
                     {{ form_row(form.sociallogin__discord__client_id) }}
                     {{ form_row(form.sociallogin__discord__client_secret) }}
                 </div>
                 <div id="google">
+                    <div class="pb-2 text-sm">Information about setting up OAuth 2 with Google can be found <a href='https://support.google.com/cloud/answer/6158849?hl=en' target="_blank">here</a>.</div>
                     {{ form_row(form.sociallogin__google__client_id) }}
                     {{ form_row(form.sociallogin__google__client_secret) }}
                 </div>

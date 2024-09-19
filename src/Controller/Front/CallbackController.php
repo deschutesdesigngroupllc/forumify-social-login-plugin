@@ -1,6 +1,6 @@
 <?php
 
-namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Login\Controller;
+namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Controller\Front;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -10,7 +10,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted('ROLE_USER')]
 class CallbackController extends AbstractController
 {
-    #[Route('/login/callback/{provider}', 'callback')]
+    #[Route('/callback/{provider}', 'callback')]
     public function __invoke(): RedirectResponse
     {
         return $this->redirectToRoute('forumify_core_index');

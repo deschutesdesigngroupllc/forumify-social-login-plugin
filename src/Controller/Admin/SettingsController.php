@@ -1,8 +1,8 @@
 <?php
 
-namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Admin\Controller;
+namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Controller\Admin;
 
-use DeschutesDesignGroupLLC\SocialLoginPlugin\Admin\Form\SettingsType;
+use DeschutesDesignGroupLLC\SocialLoginPlugin\Form\SettingsType;
 use Forumify\Core\Repository\SettingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;

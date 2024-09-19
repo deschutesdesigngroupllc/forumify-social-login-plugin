@@ -1,6 +1,6 @@
 <?php
 
-namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Admin\Form;
+namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -13,15 +13,21 @@ class SettingsType extends AbstractType
         $builder
             ->add('sociallogin__discord__client_id', TextType::class, [
                 'label' => 'Client ID',
+                'required' => false,
+                'help' => 'Leave blank to disable to login provider.',
             ])
             ->add('sociallogin__discord__client_secret', TextType::class, [
                 'label' => 'Client Secret',
+                'required' => false,
             ])
             ->add('sociallogin__google__client_id', TextType::class, [
                 'label' => 'Client ID',
+                'required' => false,
+                'help' => 'Leave blank to disable to login provider.',
             ])
             ->add('sociallogin__google__client_secret', TextType::class, [
                 'label' => 'Client Secret',
+                'required' => false,
             ]);
     }
 }

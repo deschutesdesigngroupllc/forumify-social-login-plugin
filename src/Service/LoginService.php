@@ -13,12 +13,12 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Wohali\OAuth2\Client\Provider\DiscordResourceOwner;
 
-readonly class LoginService
+class LoginService
 {
     public function __construct(
-        private SettingRepository $settingRepository,
-        private RequestStack $requestStack,
-        private UrlGeneratorInterface $router
+        private readonly SettingRepository $settingRepository,
+        private readonly RequestStack $requestStack,
+        private readonly UrlGeneratorInterface $router
     ) {}
 
     /**
@@ -46,12 +46,38 @@ readonly class LoginService
     /**
      * @throws Exception
      */
-    public function getEmail(ResourceOwnerInterface $user): OAuth2ClientInterface
+    public function getEmail(ResourceOwnerInterface $user): string
     {
         return match (get_class($user)) {
             GoogleUser::class => $user->getEmail(),
             DiscordResourceOwner::class => $user->getEmail(),
             default => throw new Exception('The resource owner you have provided is not supported.')
         };
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getUsername(ResourceOwnerInterface $user): string
+    {
+        return match (get_class($user)) {
+            GoogleUser::class => $user->getName(),
+            DiscordResourceOwner::class => $user->getUsername(),
+            default => throw new Exception('The resource owner you have provided is not supported.')
+        };
+    }
+
+    public static function generatePassword(): string
+    {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = [];
+        $alphaLength = strlen($alphabet) - 1;
+
+        for ($i = 0; $i < 10; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+
+        return implode($pass);
     }
 }

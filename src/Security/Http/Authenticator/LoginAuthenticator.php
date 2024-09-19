@@ -2,12 +2,16 @@
 
 namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Security\Http\Authenticator;
 
+use DeschutesDesignGroupLLC\SocialLoginPlugin\Entity\UserSocial;
+use DeschutesDesignGroupLLC\SocialLoginPlugin\Repository\UserSocialRepository;
 use DeschutesDesignGroupLLC\SocialLoginPlugin\Security\Authentication\LoginFailureHandler;
 use DeschutesDesignGroupLLC\SocialLoginPlugin\Security\Authentication\LoginSuccessHandler;
 use DeschutesDesignGroupLLC\SocialLoginPlugin\Service\LoginService;
-use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Forumify\Core\Entity\User;
+use Forumify\Core\Form\DTO\NewUser;
 use Forumify\Core\Repository\UserRepository;
+use Forumify\Core\Service\CreateUserService;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,10 +27,11 @@ class LoginAuthenticator extends OAuth2Authenticator
 {
     public function __construct(
         protected LoginService $service,
+        protected UserSocialRepository $userSocialRepository,
         protected UserRepository $userRepository,
-        protected EntityManagerInterface $entityManager,
         protected LoginSuccessHandler $successHandler,
         protected LoginFailureHandler $failureHandler,
+        protected CreateUserService $createUserService
     ) {
         //
     }
@@ -57,24 +62,44 @@ class LoginAuthenticator extends OAuth2Authenticator
 
         return new SelfValidatingPassport(
             new UserBadge($accessToken->getToken(), function () use ($accessToken, $client, $provider) {
+                $oauthUser = $client->fetchUserFromToken($accessToken);
 
-                $user = $client->fetchUserFromToken($accessToken);
+                /** @var UserSocial $existingUser */
+                $existingSocialUser = $this->userSocialRepository->findOneBy(["{$provider}Id" => $oauthUser->getId()]);
 
-                $email = $this->service->getEmail($user);
-
-                $existingUser = $this->userRepository->findOneBy(["{$provider}_id" => $user->getId()]);
-
-                if ($existingUser) {
-                    return $existingUser;
+                if ($existingSocialUser) {
+                    return $existingSocialUser->getUser();
                 }
 
-                $user = $this->userRepository->findOneBy(['email' => $email]);
+                $email = $this->service->getEmail($oauthUser);
+                $username = $this->service->getUsername($oauthUser);
 
-                $user->setFacebookId($user->getId());
-                $this->entityManager->persist($user);
-                $this->entityManager->flush();
+                /** @var User $existingUser */
+                $existingUser = $this->userRepository->findOneBy(['email' => $email]);
 
-                return $user;
+                if (! $existingUser) {
+                    $newUser = new NewUser;
+                    $newUser->setEmail($email);
+                    $newUser->setUsername($username);
+                    $newUser->setPassword(LoginService::generatePassword());
+
+                    $existingUser = $this->createUserService->createUser(
+                        newUser: $newUser,
+                        requireValidation: false
+                    );
+                }
+
+                $socialUser = new UserSocial($existingUser);
+
+                match ($provider) {
+                    'discord' => $socialUser->setDiscordId($oauthUser->getId()),
+                    'google' => $socialUser->setGoogleId($oauthUser->getId()),
+                    default => throw new Exception('The provider you have provided is not supported.')
+                };
+
+                $this->userSocialRepository->save($socialUser);
+
+                return $existingUser;
             })
         );
     }

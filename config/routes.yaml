@@ -7,5 +7,5 @@ admin:
 front:
   resource: ../src/Controller/Front
   type: attribute
-  prefix: sociallogin/
+  prefix: login/
   name_prefix: sociallogin_

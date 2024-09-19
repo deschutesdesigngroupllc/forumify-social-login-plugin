@@ -1,0 +1,3 @@
+doctrine_migrations:
+  migrations_paths:
+    'ForumifySocialLoginMigrations': '%kernel.project_dir%/vendor/deschutesdesigngroupllc/forumify-social-login-plugin/migrations'

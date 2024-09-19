@@ -1,0 +1,9 @@
+doctrine:
+  orm:
+    mappings:
+      sociallogin:
+        is_bundle: false
+        type: attribute
+        dir: '%kernel.project_dir%/vendor/deschutesdesigngroupllc/forumify-social-login-plugin/src/Entity'
+        prefix: DeschutesDesignGroupLLC\SocialLoginPlugin\Entity
+        alias: UserSocialEntity

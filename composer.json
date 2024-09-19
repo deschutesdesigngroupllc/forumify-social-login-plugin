@@ -1,5 +1,6 @@
 {
     "name": "deschutesdesigngroupllc/forumify-social-login-plugin",
+    "description": "A forumify plugin to enable social login.",
     "type": "forumify-plugin",
     "keywords": ["forumify", "social", "login"],
     "license": "OSL-3.0",

@@ -85,7 +85,7 @@ class LoginAuthenticator extends OAuth2Authenticator
 
                     $existingUser = $this->createUserService->createUser(
                         newUser: $newUser,
-                        requireValidation: false
+                        requireEmailVerification: false
                     );
                 }
 

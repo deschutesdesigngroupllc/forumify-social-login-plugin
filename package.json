@@ -1,0 +1,19 @@
+{
+  "name": "@deschutesdesigngroupllc/forumify-social-login-plugin",
+  "description": "Frontend assets for the forumify social login plugin.",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "format": "prettier './templates/**/*.twig' './*.{js,json}' --write --config ./.prettierrc"
+  },
+  "devDependencies": {
+    "@zackad/prettier-plugin-twig-melody": "^0.6.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "tailwindcss": "^3.4.13",
+    "vite": "^5.4.8"
+  }
+}

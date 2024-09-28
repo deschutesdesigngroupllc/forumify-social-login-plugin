@@ -1,0 +1,11 @@
+{
+  "useTabs": false,
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true,
+  "twigSingleQuote": true,
+  "plugins": [
+    "@zackad/prettier-plugin-twig-melody",
+    "prettier-plugin-tailwindcss"
+  ]
+}

@@ -11,6 +11,7 @@ use League\OAuth2\Client\Provider\GoogleUser;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Wohali\OAuth2\Client\Provider\Discord;
 use Wohali\OAuth2\Client\Provider\DiscordResourceOwner;
 
 class LoginService
@@ -27,6 +28,16 @@ class LoginService
     public function getClient(string $provider): OAuth2ClientInterface
     {
         $provider = match ($provider) {
+            'discord' => new Discord([
+                'clientId' => $this->settingRepository->get('sociallogin.discord.client_id'),
+                'clientSecret' => $this->settingRepository->get('sociallogin.discord.client_secret'),
+                'redirectUri' => $this->router->generate(
+                    name: 'sociallogin_callback',
+                    parameters: [
+                        'provider' => 'discord',
+                    ],
+                    referenceType: UrlGeneratorInterface::ABSOLUTE_URL),
+            ]),
             'google' => new Google([
                 'clientId' => $this->settingRepository->get('sociallogin.google.client_id'),
                 'clientSecret' => $this->settingRepository->get('sociallogin.google.client_secret'),

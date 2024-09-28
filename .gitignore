@@ -1,8 +1,5 @@
 vendor
 composer.lock
-
-assets/node_modules
-assets/package-lock.json
-
-public/styles
+package-lock.json.lock
+node_modules
 .idea

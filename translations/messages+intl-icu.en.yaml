@@ -4,3 +4,5 @@ sociallogin:
   clients:
     discord: Discord
     google: Google
+  login:
+    continue: Continue with

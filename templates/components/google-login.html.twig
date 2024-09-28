@@ -1,6 +1,6 @@
 {% if enabled %}
   <button onclick="window.location.href = '{{ url }}'"
-    class="flex max-w-xs cursor-pointer items-center rounded-lg border border-gray-300 bg-white px-6 py-2 text-sm font-semibold text-gray-800 shadow-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+    class="flex max-w-xs cursor-pointer items-center rounded-lg border border-gray-300 bg-white px-6 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
     <svg class="mr-2 h-6 w-6"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -29,6 +29,9 @@
         </g>
       </g>
     </svg>
-    <span>Continue with Google</span>
+    <span>
+      {{ 'sociallogin.login.continue'|trans }}
+      {{ 'sociallogin.clients.google'|trans }}
+    </span>
   </button>
 {% endif %}

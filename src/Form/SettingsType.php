@@ -14,7 +14,7 @@ class SettingsType extends AbstractType
             ->add('sociallogin__discord__client_id', TextType::class, [
                 'label' => 'Client ID',
                 'required' => false,
-                'help' => 'Leave blank to disable to login provider.',
+                'help' => 'Leave both fields blank to disable the login provider.',
             ])
             ->add('sociallogin__discord__client_secret', TextType::class, [
                 'label' => 'Client Secret',
@@ -23,7 +23,7 @@ class SettingsType extends AbstractType
             ->add('sociallogin__google__client_id', TextType::class, [
                 'label' => 'Client ID',
                 'required' => false,
-                'help' => 'Leave blank to disable to login provider.',
+                'help' => 'Leave both fields blank to disable the login provider.',
             ])
             ->add('sociallogin__google__client_secret', TextType::class, [
                 'label' => 'Client Secret',

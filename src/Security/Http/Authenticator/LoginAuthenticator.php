@@ -64,11 +64,11 @@ class LoginAuthenticator extends OAuth2Authenticator
             new UserBadge($accessToken->getToken(), function () use ($accessToken, $client, $provider) {
                 $oauthUser = $client->fetchUserFromToken($accessToken);
 
-                /** @var UserSocial $existingUser */
-                $existingSocialUser = $this->userSocialRepository->findOneBy(["{$provider}Id" => $oauthUser->getId()]);
+                /** @var UserSocial $existingSocialUserByProviderId */
+                $existingSocialUserByProviderId = $this->userSocialRepository->findOneBy(["{$provider}Id" => $oauthUser->getId()]);
 
-                if ($existingSocialUser) {
-                    return $existingSocialUser->getUser();
+                if ($existingSocialUserByProviderId) {
+                    return $existingSocialUserByProviderId->getUser();
                 }
 
                 $email = $this->service->getEmail($oauthUser);
@@ -89,7 +89,10 @@ class LoginAuthenticator extends OAuth2Authenticator
                     );
                 }
 
-                $socialUser = new UserSocial($existingUser);
+                /** @var UserSocial $existingSocialUserByUserId */
+                $existingSocialUserByUserId = $this->userSocialRepository->findOneBy(['user' => $existingUser->getId()]);
+
+                $socialUser = $existingSocialUserByUserId ?? new UserSocial($existingUser);
 
                 match ($provider) {
                     'discord' => $socialUser->setDiscordId($oauthUser->getId()),

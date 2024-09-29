@@ -8,27 +8,34 @@
     "login"
   ],
   "license": "OSL-3.0",
+  "authors": [
+    {
+      "name": "Jon Erickson",
+      "email": "jon@deschutesdesigngroup.com",
+      "homepage": "https://www.deschutesdesigngroup.com"
+    }
+  ],
   "require": {
     "php": "^8.2",
-    "forumify/forumify-platform": "dev-master",
+    "forumify/forumify-platform": "^0.3",
     "league/oauth2-google": "^4.0",
     "wohali/oauth2-discord-new": "^1.2",
     "knpuniversity/oauth2-client-bundle": "^2.18"
   },
-  "minimum-stability": "stable",
+  "require-dev": {
+    "laravel/pint": "^1.17"
+  },
   "autoload": {
     "psr-4": {
       "DeschutesDesignGroupLLC\\SocialLoginPlugin\\": "src/"
     }
   },
+  "minimum-stability": "stable",
   "config": {
     "allow-plugins": {
       "symfony/runtime": false,
       "symfony/flex": false
     }
-  },
-  "require-dev": {
-    "laravel/pint": "^1.17"
   },
   "scripts": {
     "lint": "./vendor/bin/pint src"

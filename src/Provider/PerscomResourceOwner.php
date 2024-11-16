@@ -13,7 +13,7 @@ class PerscomResourceOwner implements ResourceOwnerInterface
 
     public function getId(): ?string
     {
-        return $this->getValueByKey($this->response, 'sub');
+        return $this->getValueByKey($this->response, 'id');
     }
 
     public function getEmail(): ?string
@@ -28,7 +28,17 @@ class PerscomResourceOwner implements ResourceOwnerInterface
 
     public function getProfilePhoto(): ?string
     {
-        return $this->getValueByKey($this->response, 'profile_photo_url');
+        return $this->getValueByKey($this->response, 'picture');
+    }
+
+    public function getProfile(): ?string
+    {
+        return $this->getValueByKey($this->response, 'profile');
+    }
+
+    public function getTimezone(): ?string
+    {
+        return $this->getValueByKey($this->response, 'zoneinfo');
     }
 
     public function toArray(): array

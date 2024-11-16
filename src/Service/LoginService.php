@@ -93,6 +93,14 @@ class LoginService
         };
     }
 
+    public function getTimezone(ResourceOwnerInterface $user): string
+    {
+        return match (get_class($user)) {
+            PerscomResourceOwner::class => $user->getTimezone(),
+            default => 'UTC'
+        };
+    }
+
     public static function generatePassword(): string
     {
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';

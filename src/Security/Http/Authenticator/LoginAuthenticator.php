@@ -73,6 +73,7 @@ class LoginAuthenticator extends OAuth2Authenticator
 
                 $email = $this->service->getEmail($oauthUser);
                 $username = $this->service->getUsername($oauthUser);
+                $timezone = $this->service->getTimezone($oauthUser);
 
                 /** @var User $existingUser */
                 $existingUser = $this->userRepository->findOneBy(['email' => $email]);
@@ -81,6 +82,7 @@ class LoginAuthenticator extends OAuth2Authenticator
                     $newUser = new NewUser;
                     $newUser->setEmail($email);
                     $newUser->setUsername($username);
+                    $newUser->setTimezone($timezone);
                     $newUser->setPassword(LoginService::generatePassword());
 
                     $existingUser = $this->createUserService->createUser(

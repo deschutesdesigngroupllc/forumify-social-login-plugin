@@ -42,9 +42,11 @@ class Perscom extends AbstractProvider
         ];
     }
 
-    protected function checkResponse(ResponseInterface $response, $data)
+    protected function checkResponse(ResponseInterface $response, $data): void
     {
-        // TODO: Implement checkResponse() method.
+        if ($response->getStatusCode() >= 400) {
+            throw PerscomIdentityProviderException::clientException($response, $data);
+        }
     }
 
     protected function createResourceOwner(array $response, AccessToken $token): PerscomResourceOwner

@@ -20,8 +20,7 @@ class DiscordLogin
 
     public function mount(): void
     {
-        $this->enabled = $this->settingRepository->get('sociallogin.discord.client_id') !== null
-            && $this->settingRepository->get('sociallogin.discord.client_secret') !== null;
+        $this->enabled = $this->settingRepository->get('sociallogin.discord.enabled');
 
         $this->url = $this->router->generate(
             name: 'sociallogin_redirect',

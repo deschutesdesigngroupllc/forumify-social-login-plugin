@@ -16,6 +16,9 @@ class UserSocial
     private User $user;
 
     #[ORM\Column(unique: true, nullable: true)]
+    private string $perscomId;
+
+    #[ORM\Column(unique: true, nullable: true)]
     private string $discordId;
 
     #[ORM\Column(unique: true, nullable: true)]
@@ -29,6 +32,16 @@ class UserSocial
     public function getUser(): User
     {
         return $this->user;
+    }
+
+    public function getPerscomId(): ?string
+    {
+        return $this->perscomId;
+    }
+
+    public function setPerscomId(string $perscomId): void
+    {
+        $this->perscomId = $perscomId;
     }
 
     public function getDiscordId(): ?string

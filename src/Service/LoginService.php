@@ -2,6 +2,8 @@
 
 namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Service;
 
+use DeschutesDesignGroupLLC\SocialLoginPlugin\Provider\Perscom;
+use DeschutesDesignGroupLLC\SocialLoginPlugin\Provider\PerscomResourceOwner;
 use Exception;
 use Forumify\Core\Repository\SettingRepository;
 use KnpU\OAuth2ClientBundle\Client\OAuth2Client;
@@ -28,6 +30,17 @@ class LoginService
     public function getClient(string $provider): OAuth2ClientInterface
     {
         $provider = match ($provider) {
+            'perscom' => new Perscom([
+                'dashboardUrl' => $this->settingRepository->get('sociallogin.perscom.dashboard_url'),
+                'clientId' => $this->settingRepository->get('sociallogin.perscom.client_id'),
+                'clientSecret' => $this->settingRepository->get('sociallogin.perscom.client_secret'),
+                'redirectUri' => $this->router->generate(
+                    name: 'sociallogin_callback',
+                    parameters: [
+                        'provider' => 'perscom',
+                    ],
+                    referenceType: UrlGeneratorInterface::ABSOLUTE_URL),
+            ]),
             'discord' => new Discord([
                 'clientId' => $this->settingRepository->get('sociallogin.discord.client_id'),
                 'clientSecret' => $this->settingRepository->get('sociallogin.discord.client_secret'),
@@ -62,6 +75,7 @@ class LoginService
         return match (get_class($user)) {
             GoogleUser::class => $user->getEmail(),
             DiscordResourceOwner::class => $user->getEmail(),
+            PerscomResourceOwner::class => $user->getEmail(),
             default => throw new Exception('The resource owner you have provided is not supported.')
         };
     }
@@ -74,6 +88,7 @@ class LoginService
         return match (get_class($user)) {
             GoogleUser::class => $user->getName(),
             DiscordResourceOwner::class => $user->getUsername(),
+            PerscomResourceOwner::class => $user->getName(),
             default => throw new Exception('The resource owner you have provided is not supported.')
         };
     }

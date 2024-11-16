@@ -6,8 +6,8 @@ use Forumify\Core\Repository\SettingRepository;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
-#[AsTwigComponent('DeschutesDesignGroupLLC\SocialLogin\Google', '@ForumifySocialLoginPlugin/components/google-login.html.twig')]
-class GoogleLogin
+#[AsTwigComponent('DeschutesDesignGroupLLC\SocialLogin\Perscom', '@ForumifySocialLoginPlugin/components/perscom-login.html.twig')]
+class PerscomLogin
 {
     public string $url;
 
@@ -20,12 +20,12 @@ class GoogleLogin
 
     public function mount(): void
     {
-        $this->enabled = $this->settingRepository->get('sociallogin.google.enabled');
+        $this->enabled = $this->settingRepository->get('sociallogin.perscom.enabled');
 
         $this->url = $this->router->generate(
             name: 'sociallogin_redirect',
             parameters: [
-                'provider' => 'google',
+                'provider' => 'perscom',
             ],
             referenceType: UrlGeneratorInterface::ABSOLUTE_URL
         );

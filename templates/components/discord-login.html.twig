@@ -1,5 +1,5 @@
 {% if enabled %}
-  <button onclick="window.location.href = '{{ url }}'"
+  <a href="{{ url }}"
     class="flex max-w-xs cursor-pointer items-center rounded-lg border border-gray-300 bg-white px-6 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
     <svg xmlns="http://www.w3.org/2000/svg"
       width="16"
@@ -12,5 +12,5 @@
       {{ 'sociallogin.login.continue'|trans }}
       {{ 'sociallogin.clients.discord'|trans }}
     </span>
-  </button>
+  </a>
 {% endif %}

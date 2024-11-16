@@ -4,5 +4,6 @@ sociallogin:
   clients:
     discord: Discord
     google: Google
+    perscom: PERSCOM
   login:
     continue: Continue with

@@ -97,6 +97,7 @@ class LoginAuthenticator extends OAuth2Authenticator
                 match ($provider) {
                     'discord' => $socialUser->setDiscordId($oauthUser->getId()),
                     'google' => $socialUser->setGoogleId($oauthUser->getId()),
+                    'perscom' => $socialUser->setPerscomId($oauthUser->getId()),
                     default => throw new Exception('The provider you have provided is not supported.')
                 };
 

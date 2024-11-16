@@ -10,6 +10,9 @@
     {{ form_start(form) }}
     {% embed '@Forumify/components/tabs.html.twig' %}
       {% block tabs %}
+        <button type="button" class="btn-link" data-tab-id="perscom">
+          {{ 'sociallogin.clients.perscom'|trans }}
+        </button>
         <button type="button" class="btn-link" data-tab-id="discord">
           {{ 'sociallogin.clients.discord'|trans }}
         </button>
@@ -18,23 +21,39 @@
         </button>
       {% endblock %}
       {% block tabpanels %}
+        <div id="perscom">
+          <div class="pb-4 text-sm">
+            <strong>Redirect URL</strong>: {{ redirect['perscom'] }}
+          </div>
+          <div class="pb-4 text-sm">
+            NOTE: Social Login with PERSCOM requires the <strong>
+              Enterprise
+            </strong> plan.
+          </div>
+          {{ form_row(form.sociallogin__perscom__enabled) }}
+          {{ form_row(form.sociallogin__perscom__dashboard_url) }}
+          {{ form_row(form.sociallogin__perscom__client_id) }}
+          {{ form_row(form.sociallogin__perscom__client_secret) }}
+        </div>
         <div id="discord">
           <div class="pb-4 text-sm">
-            Information about setting up OAuth 2 with Discord can be found <a href="https://discord.com/developers/docs/topics/oauth2"
-              target="_blank">
-              here.
-            </a>
+            <strong>Redirect URL</strong>: {{ redirect['discord'] }}
           </div>
+          <div class="pb-4 text-sm">
+            Information about setting up OAuth 2 with Discord can be found <a href="https://discord.com/developers/docs/topics/oauth2" target="_blank">here.</a>
+          </div>
+          {{ form_row(form.sociallogin__discord__enabled) }}
           {{ form_row(form.sociallogin__discord__client_id) }}
           {{ form_row(form.sociallogin__discord__client_secret) }}
         </div>
         <div id="google">
           <div class="pb-4 text-sm">
-            Information about setting up OAuth 2 with Google can be found <a href="https://support.google.com/cloud/answer/6158849?hl=en"
-              target="_blank">
-              here.
-            </a>
+            <strong>Redirect URL</strong>: {{ redirect['google'] }}
           </div>
+          <div class="pb-4 text-sm">
+            Information about setting up OAuth 2 with Google can be found <a href="https://support.google.com/cloud/answer/6158849?hl=en" target="_blank">here.</a>
+          </div>
+          {{ form_row(form.sociallogin__google__enabled) }}
           {{ form_row(form.sociallogin__google__client_id) }}
           {{ form_row(form.sociallogin__google__client_secret) }}
         </div>

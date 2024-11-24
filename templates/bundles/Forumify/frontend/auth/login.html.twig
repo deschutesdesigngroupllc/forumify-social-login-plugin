@@ -1,13 +1,7 @@
-{% block stylesheets %}
-  {{ parent() }}
-  <link rel="stylesheet"
-    href="{{ asset('bundles/forumifysocialloginplugin/dist/bundle.css') }}" />
-{% endblock %}
-
 {% block form %}
   {{ parent() }}
-  <div class="flex flex-col items-center justify-center gap-2">
-    <div class="flex flex-col gap-2 py-4">
+  <div class="flex flex-col items-center justify-center">
+    <div class="flex flex-col gap-2 p-4">
       {{ component('DeschutesDesignGroupLLC\\SocialLogin\\Perscom') }}
       {{ component('DeschutesDesignGroupLLC\\SocialLogin\\Discord') }}
       {{ component('DeschutesDesignGroupLLC\\SocialLogin\\Google') }}

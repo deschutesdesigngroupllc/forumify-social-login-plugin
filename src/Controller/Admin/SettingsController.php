@@ -53,6 +53,13 @@ class SettingsController extends AbstractController
                     ],
                     referenceType: UrlGeneratorInterface::ABSOLUTE_URL
                 ),
+                'steam' => $router->generate(
+                    name: 'sociallogin_callback',
+                    parameters: [
+                        'provider' => 'steam',
+                    ],
+                    referenceType: UrlGeneratorInterface::ABSOLUTE_URL
+                ),
             ],
         ]);
     }

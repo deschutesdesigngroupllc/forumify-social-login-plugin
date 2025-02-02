@@ -16,13 +16,16 @@ class UserSocial
     private User $user;
 
     #[ORM\Column(unique: true, nullable: true)]
-    private string $perscomId;
-
-    #[ORM\Column(unique: true, nullable: true)]
     private string $discordId;
 
     #[ORM\Column(unique: true, nullable: true)]
     private string $googleId;
+
+    #[ORM\Column(unique: true, nullable: true)]
+    private string $perscomId;
+
+    #[ORM\Column(unique: true, nullable: true)]
+    private string $steamId;
 
     public function __construct(User $user)
     {
@@ -32,16 +35,6 @@ class UserSocial
     public function getUser(): User
     {
         return $this->user;
-    }
-
-    public function getPerscomId(): ?string
-    {
-        return $this->perscomId;
-    }
-
-    public function setPerscomId(string $perscomId): void
-    {
-        $this->perscomId = $perscomId;
     }
 
     public function getDiscordId(): ?string
@@ -62,5 +55,25 @@ class UserSocial
     public function setGoogleId(string $googleId): void
     {
         $this->googleId = $googleId;
+    }
+
+    public function getPerscomId(): ?string
+    {
+        return $this->perscomId;
+    }
+
+    public function setPerscomId(string $perscomId): void
+    {
+        $this->perscomId = $perscomId;
+    }
+
+    public function getSteamId(): ?string
+    {
+        return $this->steamId;
+    }
+
+    public function setSteamId(string $steamId): void
+    {
+        $this->steamId = $steamId;
     }
 }

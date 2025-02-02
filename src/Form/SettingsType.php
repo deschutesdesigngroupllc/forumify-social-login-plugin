@@ -51,6 +51,18 @@ class SettingsType extends AbstractType
             ->add('sociallogin__google__client_secret', TextType::class, [
                 'label' => 'Client Secret',
                 'required' => false,
+            ])
+            ->add('sociallogin__steam__enabled', CheckboxType::class, [
+                'label' => 'Enabled',
+                'required' => false,
+            ])
+            ->add('sociallogin__steam__client_id', TextType::class, [
+                'label' => 'Client ID',
+                'required' => false,
+            ])
+            ->add('sociallogin__steam__client_secret', TextType::class, [
+                'label' => 'Client Secret',
+                'required' => false,
             ]);
     }
 }

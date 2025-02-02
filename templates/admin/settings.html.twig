@@ -19,6 +19,9 @@
         <button type="button" class="btn-link" data-tab-id="google">
           {{ 'sociallogin.clients.google'|trans }}
         </button>
+        <button type="button" class="btn-link" data-tab-id="steam">
+          {{ 'sociallogin.clients.steam'|trans }}
+        </button>
       {% endblock %}
       {% block tabpanels %}
         <div id="perscom">
@@ -56,6 +59,17 @@
           {{ form_row(form.sociallogin__google__enabled) }}
           {{ form_row(form.sociallogin__google__client_id) }}
           {{ form_row(form.sociallogin__google__client_secret) }}
+        </div>
+        <div id="steam">
+          <div class="pb-4 text-sm">
+            <strong>Redirect URL</strong>: {{ redirect['steam'] }}
+          </div>
+          <div class="pb-4 text-sm">
+            Information about setting up OAuth 2 with Steam can be found <a href="https://steamcommunity.com/dev/apikey" target="_blank">here.</a>
+          </div>
+          {{ form_row(form.sociallogin__steam__enabled) }}
+          {{ form_row(form.sociallogin__steam__client_id) }}
+          {{ form_row(form.sociallogin__steam__client_secret) }}
         </div>
       {% endblock %}
     {% endembed %}

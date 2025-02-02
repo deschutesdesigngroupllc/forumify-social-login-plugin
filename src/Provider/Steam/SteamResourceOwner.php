@@ -1,11 +1,11 @@
 <?php
 
-namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Provider;
+namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Provider\Steam;
 
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Tool\ArrayAccessorTrait;
 
-class PerscomResourceOwner implements ResourceOwnerInterface
+class SteamResourceOwner implements ResourceOwnerInterface
 {
     use ArrayAccessorTrait;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Provider;
+namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Provider\Perscom;
 
 use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Token\AccessToken;

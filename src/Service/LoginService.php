@@ -2,8 +2,10 @@
 
 namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Service;
 
-use DeschutesDesignGroupLLC\SocialLoginPlugin\Provider\Perscom;
-use DeschutesDesignGroupLLC\SocialLoginPlugin\Provider\PerscomResourceOwner;
+use DeschutesDesignGroupLLC\SocialLoginPlugin\Provider\Perscom\Perscom;
+use DeschutesDesignGroupLLC\SocialLoginPlugin\Provider\Perscom\PerscomResourceOwner;
+use DeschutesDesignGroupLLC\SocialLoginPlugin\Provider\Steam\Steam;
+use DeschutesDesignGroupLLC\SocialLoginPlugin\Provider\Steam\SteamResourceOwner;
 use Exception;
 use Forumify\Core\Repository\SettingRepository;
 use KnpU\OAuth2ClientBundle\Client\OAuth2Client;
@@ -61,6 +63,16 @@ class LoginService
                     ],
                     referenceType: UrlGeneratorInterface::ABSOLUTE_URL),
             ]),
+            'steam' => new Steam([
+                'clientId' => $this->settingRepository->get('sociallogin.steam.client_id'),
+                'clientSecret' => $this->settingRepository->get('sociallogin.steam.client_secret'),
+                'redirectUri' => $this->router->generate(
+                    name: 'sociallogin_callback',
+                    parameters: [
+                        'provider' => 'steam',
+                    ],
+                    referenceType: UrlGeneratorInterface::ABSOLUTE_URL),
+            ]),
             default => throw new Exception('The provider you have provided is not supported.')
         };
 
@@ -76,6 +88,7 @@ class LoginService
             GoogleUser::class => $user->getEmail(),
             DiscordResourceOwner::class => $user->getEmail(),
             PerscomResourceOwner::class => $user->getEmail(),
+            SteamResourceOwner::class => $user->getEmail(),
             default => throw new Exception('The resource owner you have provided is not supported.')
         };
     }
@@ -89,6 +102,7 @@ class LoginService
             GoogleUser::class => $user->getName(),
             DiscordResourceOwner::class => $user->getUsername(),
             PerscomResourceOwner::class => $user->getName(),
+            SteamResourceOwner::class => $user->getName(),
             default => throw new Exception('The resource owner you have provided is not supported.')
         };
     }

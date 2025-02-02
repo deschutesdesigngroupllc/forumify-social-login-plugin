@@ -1,6 +1,6 @@
 <?php
 
-namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Provider;
+namespace DeschutesDesignGroupLLC\SocialLoginPlugin\Provider\Perscom;
 
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Psr\Http\Message\ResponseInterface;

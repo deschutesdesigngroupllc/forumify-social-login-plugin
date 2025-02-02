@@ -5,5 +5,6 @@ sociallogin:
     discord: Discord
     google: Google
     perscom: PERSCOM
+    steam: Steam
   login:
     continue: Continue with
